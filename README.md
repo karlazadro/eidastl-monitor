@@ -14,6 +14,18 @@ flowchart LR
   D --> G[Change detection];
 ```
 
+## Visuals
+
+Generated from the latest successful run.
+
+![Status distribution (percent)](dashboard_screenshots/auto/status_distribution_stacked_percent.png)
+
+![KPI: Active % (GRANTED/total)](dashboard_screenshots/auto/kpi_active_pct_granted.png)
+
+![KPI: Active % (GRANTED+RECOGNISED/total)](dashboard_screenshots/auto/kpi_active_pct_granted_plus_recognised.png)
+
+![Total services by country](dashboard_screenshots/auto/total_services_by_country.png)
+
 ## Output (example)
 ![Service status KPI](dashboard_screenshots/pivot_status_kpi.png)
 
