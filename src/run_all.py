@@ -7,7 +7,7 @@ from .dq_checks import run_dq_checks
 from .detect_changes import detect_changes
 
 def main():
-    cfg = Config()
+    cfg = Config.from_env()
     conn = connect(cfg.db_path)
     apply_schema(conn, cfg.schema_path)
 
