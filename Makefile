@@ -1,17 +1,14 @@
 COUNTRIES ?= HR,SI,DE
-PY := . .venv/bin/activate &&
 
-setup:
-	python3 -m venv .venv
-	$(PY) pip install -r requirements.txt
+.PHONY: run test lint clean
 
 run:
-	$(PY) COUNTRIES=$(COUNTRIES) python -m src.run_all
+	. .venv/bin/activate && COUNTRIES=$(COUNTRIES) python -m src.run_all
 
-check:
-	$(PY) python -m compileall src
+test:
+	. .venv/bin/activate && pytest -q
 
 clean:
 	rm -f eidastl.sqlite
 	rm -rf reports/*
-	touch reports/.gitkeep
+	rm -rf data_raw/*
