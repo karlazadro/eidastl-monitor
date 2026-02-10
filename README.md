@@ -14,6 +14,8 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 python -m src.run_all
+```
+
 What gets generated
 	•	eidastl.sqlite — local SQLite database with run history (not committed)
 	•	reports/ — CSV outputs (not committed)
@@ -21,7 +23,7 @@ What gets generated
 	•	change_log — detected differences between runs
 
 Excel / Pivot view
-	1.	Open reports/services_status_summary_pretty.csv in Excel
+	1.	Open reports/services_status_summary.csv in Excel
 	2.	Insert PivotTable:
 	•	Rows: COUNTRY
 	•	Columns: status_label
