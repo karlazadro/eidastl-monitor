@@ -8,7 +8,7 @@ Lightweight monitoring pipeline that ingests EU eIDAS Trusted List (LOTL/TL) dat
 flowchart LR
   A[EU eIDAS LOTL/TL] --> B[Ingest]
   B --> C[Normalize]
-  C --> D[SQLite (run history)]
+  C --> D["SQLite - run history"]
   D --> E[Data-quality checks]
   D --> F[Reports (CSV)]
   D --> G[Change detection]
