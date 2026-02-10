@@ -10,14 +10,17 @@ flowchart LR
   B --> C[Normalize];
   C --> D["SQLite - run history"];
   D --> E[Data-quality checks];
-  D --> F["Reports (CSV)"];
+  D --> F["Visuals (PNG)"];
   D --> G[Change detection];
 ```
 
-## Visuals
+## Output (auto-generated)
 
-Generated from the latest successful run.
+Active % is computed as:
+- **GRANTED / TOTAL** (strict)
+- optionally **(GRANTED + RECOGNISED) / TOTAL** (broader)
 
+### Visuals
 ![Status distribution (percent)](dashboard_screenshots/auto/status_distribution_stacked_percent.png)
 
 ![KPI: Active % (GRANTED/total)](dashboard_screenshots/auto/kpi_active_pct_granted.png)
@@ -26,18 +29,14 @@ Generated from the latest successful run.
 
 ![Total services by country](dashboard_screenshots/auto/total_services_by_country.png)
 
-## Output (example)
-![Service status KPI](dashboard_screenshots/pivot_status_kpi.png)
-
-**Active %** = ACTIVE / TOTAL services per country.
-
 ## Quickstart
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 
 python -m src.run_all
+python -m src.make_visuals_from_sqlite
 ```
 ## Make targets
 - `make run` — run pipeline (uses COUNTRIES if provided)
@@ -50,23 +49,15 @@ make run COUNTRIES=HR,DE
 make test
 ```
 
-What gets generated
+## What gets generated
+- dashboard_screenshots/auto/ — PNG visuals (committed)
 - eidastl.sqlite — local SQLite database with run history (not committed)
-- reports/ — CSV outputs (not committed)
-- dq_results/ — data quality checks per run
-- change_log/ — detected differences between runs
+- dq_results (table) — data quality checks per run
+- change_log (table) — detected differences between runs
 
-Excel / Pivot view
-1. Open reports/services_status_summary_pretty.csv in Excel
-2. Insert PivotTable:
-- Rows: COUNTRY
-- Columns: status_label
-- Values: Sum of n_services
-3. Enable Grand Total
-4. Add KPI column Active % outside pivot: =ACTIVE/GrandTotal
-5. Add conditional formatting (data bars) for Active %
 
-Notes
-- Generated artifacts (`eidastl.sqlite`, `reports/`) are not committed.
+## Notes
+- eidastl.sqlite is generated locally and not committed.
+- dashboard_screenshots/auto/*.png are committed as reproducible outputs.
 - Designed for reproducible runs with traceability (run history + change logs).
 - Focus on data quality checks to catch schema/consistency issues early.
