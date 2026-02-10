@@ -2,6 +2,18 @@
 
 Lightweight monitoring pipeline that ingests EU eIDAS Trusted List (LOTL/TL) data, normalizes it into SQLite, runs data-quality checks, and produces reporting outputs for service status monitoring and change detection.
 
+## Architecture
+
+```mermaid
+flowchart LR
+  A[EU eIDAS LOTL/TL] --> B[Ingest]
+  B --> C[Normalize]
+  C --> D[SQLite (run history)]
+  D --> E[Data-quality checks]
+  D --> F[Reports (CSV)]
+  D --> G[Change detection]
+```
+
 ## Output (example)
 ![Service status KPI](dashboard_screenshots/pivot_status_kpi.png)
 
@@ -33,7 +45,7 @@ What gets generated
 	•	change_log — detected differences between runs
 
 Excel / Pivot view
-	1.	Open reports/services_status_summary.csv in Excel
+	1.	Open reports/services_status_summary_pretty.csv in Excel
 	2.	Insert PivotTable:
 	•	Rows: COUNTRY
 	•	Columns: status_label
