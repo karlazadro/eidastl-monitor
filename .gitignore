@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Local data / artifacts
+eidastl.sqlite
+reports/
+data_raw/
+*.db
+*.sqlite
+
+# OS
+.DS_Store
+
+# Env
+.env
