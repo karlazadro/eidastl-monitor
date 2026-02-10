@@ -6,12 +6,12 @@ Lightweight monitoring pipeline that ingests EU eIDAS Trusted List (LOTL/TL) dat
 
 ```mermaid
 flowchart LR
-  A[EU eIDAS LOTL/TL] --> B[Ingest]
-  B --> C[Normalize]
-  C --> D["SQLite - run history"]
-  D --> E[Data-quality checks]
-  D --> F[Reports (CSV)]
-  D --> G[Change detection]
+  A[EU eIDAS LOTL/TL] --> B[Ingest];
+  B --> C[Normalize];
+  C --> D["SQLite - run history"];
+  D --> E[Data-quality checks];
+  D --> F["Reports (CSV)"];
+  D --> G[Change detection];
 ```
 
 ## Output (example)
@@ -39,21 +39,22 @@ make test
 ```
 
 What gets generated
-	•	eidastl.sqlite — local SQLite database with run history (not committed)
-	•	reports/ — CSV outputs (not committed)
-	•	dq_results — data quality checks per run
-	•	change_log — detected differences between runs
+- eidastl.sqlite — local SQLite database with run history (not committed)
+- reports/ — CSV outputs (not committed)
+- dq_results/ — data quality checks per run
+- change_log/ — detected differences between runs
 
 Excel / Pivot view
-	1.	Open reports/services_status_summary_pretty.csv in Excel
-	2.	Insert PivotTable:
-	•	Rows: COUNTRY
-	•	Columns: status_label
-	•	Values: Sum of n_services
-	3.	Enable Grand Total
-	4.	Add KPI column Active % outside pivot: =ACTIVE/GrandTotal
-	5.	Add conditional formatting (data bars) for Active %
+1. Open reports/services_status_summary_pretty.csv in Excel
+2. Insert PivotTable:
+- Rows: COUNTRY
+- Columns: status_label
+- Values: Sum of n_services
+3. Enable Grand Total
+4. Add KPI column Active % outside pivot: =ACTIVE/GrandTotal
+5. Add conditional formatting (data bars) for Active %
 
 Notes
-
-This repository focuses on data integrity, traceability, and reproducible reporting outputs.
+- Generated artifacts (`eidastl.sqlite`, `reports/`) are not committed.
+- Designed for reproducible runs with traceability (run history + change logs).
+- Focus on data quality checks to catch schema/consistency issues early.
