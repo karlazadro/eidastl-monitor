@@ -3,7 +3,7 @@
 __pycache__/
 *.pyc
 
-# Local data / artifacts
+# Local data / artifacts (do not commit)
 eidastl.sqlite
 reports/
 data_raw/
