@@ -15,6 +15,16 @@ pip install -r requirements.txt
 
 python -m src.run_all
 ```
+## Make targets
+- `make run` — run pipeline (uses COUNTRIES if provided)
+- `make test` — run tests
+- `make clean` — delete local DB and generated artifacts
+
+Example:
+```bash
+make run COUNTRIES=HR,DE
+make test
+```
 
 What gets generated
 	•	eidastl.sqlite — local SQLite database with run history (not committed)
